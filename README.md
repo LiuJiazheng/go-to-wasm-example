@@ -13,9 +13,9 @@ $(BULK_MEMORY_OBJS): CFLAGS += \
 ```
 This could help us forbid 0xFC wasm opcode extention compiled into our target. Because zkWASM does not support that.
 
-I am just lazy, this could by changing git submodule to make this automatic rather than doing this manually.
+I am just lazy, this could by changing git submodule to make this automatic rather than doing it manually.
 
-Remember compiling cache might also affect the correctness. Rememer to find the tinygo cache in your system and delete it everytime you think the build is weird.
+Note that compiling cache might also affect the correctness. Rememer to find the tinygo cache in your system and delete it everytime you think the build is weird.
 
 ### 2. Compile example target
 
@@ -24,7 +24,7 @@ a. compile
 ${TINYGO_PATH_YOU_BUILD}/tinygo build -o fib-freestand.wasm -scheduler=none --no-debug -gc=leaking -target=wasm-freestanding fib.go
 ```
 
-b. check whether this build is sound
+b. check if this build is sound
 ```
 wasm2wat fib-freestand.wasm > fib-freestand.wat
 ```
