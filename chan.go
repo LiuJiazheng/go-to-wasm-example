@@ -8,8 +8,8 @@ func sum(s []int, c chan int) {
 	c <- sum // send sum to c
 }
 
-//export zkmain
-func zkmain() {
+//export temp
+func temp() (int, int) {
 	s := []int{7, 2, 8, -9, 4, 0}
 
 	c := make(chan int)
@@ -17,7 +17,19 @@ func zkmain() {
 	go sum(s[len(s)/2:], c)
 	x, y := <-c, <-c // receive from c
 
-	print(x, y, x+y)
+	return x, y
 }
 
-func main() {}
+//export zkmain
+func zkmain() {
+
+	x, y := temp()
+	println(x, y)
+	if x+y != 12 {
+		panic(1)
+	}
+}
+
+func main() {
+	zkmain()
+}
