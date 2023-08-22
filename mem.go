@@ -1,26 +1,29 @@
 package main
 
-// export gomem
-func gomem() int {
+//export mymem
+func mymem() int {
 	k := make([]int, 5)
-	p := new(int)
-	*p = k[1]
+	for i := 0; i < 5; i++ {
+		k[i] = 5
+	}
 
 	var s []int
 	for i := 0; i < 10; i++ {
 		s = append(s, i)
 	}
 
-	return *p
+	return k[1]
 }
 
 //export zkmain
 func zkmain() {
-	kk := gomem()
+	kk := mymem()
 	if kk != 5 {
 		panic(1)
 	}
+	println(kk)
 }
 
 func main() {
+	zkmain()
 }
