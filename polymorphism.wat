@@ -21,7 +21,7 @@
     ;; The following two functions are exported to JS; when JS calls them, they
     ;; invoke functions from the table.
 
-    (func (export "functor") (type $int2int)
+    (func $functor (export "functor") (type $int2int)
         i32.const 42
 
         ;; Place the value of the first parameter on the stack for the function
@@ -34,4 +34,16 @@
         call_indirect (type $int2int)
     )
 
+    (func $assert_eq (param $a i32) (param $b i32)
+        (if (i32.ne (local.get $a) (local.get $b))
+          (unreachable)                           
+        )
+    )
+
+    (func (export "zkmain")
+        i32.const 16
+        call $functor
+        i32.const 84
+        call $assert_eq
+    )
 )

@@ -12,7 +12,9 @@ const importObject = {
 WebAssembly.instantiate(new Uint8Array(wasmfile), importObject).then(obj => {
     // Get two exported functions from wasm.
     let f = obj.instance.exports.functor;
+    let zkmain = obj.instance.exports.zkmain;
 
     console.log('f(16) =>', f(16));
     console.log('f(17) =>', f(17));
+    zkmain();
 });
