@@ -41,8 +41,9 @@
     )
 
     (func (export "zkmain")
+        i32.const 42
         i32.const 16
-        call $functor
+        call_indirect (type $int2int)
         i32.const 84
         call $assert_eq
     )
