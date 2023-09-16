@@ -16,11 +16,14 @@ func fibonacciNth(n int) int {
 
 //export zkmain
 func zkmain() {
-	const fib10 = 55
+	const fib10 = 56
+        res := fibonacciNth(10)
+	println(res)
 	if fib10 != fibonacciNth(10) {
 		panic(1)
 	}
 }
 
 func main() {
+  zkmain()
 }
